@@ -33,9 +33,7 @@ function issueJwtMiddleware(req, res, next) {
 
 loginRouter.post('/submit', userValidation, authenticate, issueJwtMiddleware, (req, res) => {
     const { token } = req;
-   
     res.cookie('jwt', token, { httpOnly: true });
-   
     res.redirect('/'); 
 });
 
