@@ -3,13 +3,14 @@ const signUpRouter = express.Router();
 const knexLib = require('knex');
 const knexConfig = require('../knexfile');
 const { hashPassword } = require('../utils/authorization');
+const { userValidation } = require('../utils/validation');
 const knex = knexLib(knexConfig);
 
 signUpRouter.get('/', (req, res) => {
     res.render('SignUpPage');
 });
 
-signUpRouter.post('/register', async(req, res) => {
+signUpRouter.post('/register', userValidation,  async(req, res) => {
 
     try {
         const email = req.body.email;

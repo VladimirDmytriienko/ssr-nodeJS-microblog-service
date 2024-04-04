@@ -3,13 +3,13 @@ const { knex } = require('../db');
 
 Model.knex(knex);
 
-class Users extends Model {
+class User extends Model {
     static get tableName() {
         return 'users';
     }
 
     static get relationMappings() {
-        const Article = require('./article'); 
+        const Article = require('./article');
 
         return {
             articles: {
@@ -17,18 +17,19 @@ class Users extends Model {
                 modelClass: Article,
                 join: {
                     from: 'users.id',
-                    to: 'articles.author_id'
+                    to: 'articles.user_id'
                 }
             }
         };
     }
 }
 
-function findUsers(login) {
-    return Users.query().findOne({ email: login });
+function findUser(login) {
+    return User.query().findOne({ email: login });
 }
 
 module.exports = {
-    Users,
-    findUsers
+    User,
+    findUser
 };
+
