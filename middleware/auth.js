@@ -1,4 +1,4 @@
-const {  issueJwt } = require('../utils/authorization');
+const { issueJwt, verifyJwt } = require('../utils/authorization');
 
 const issueJwtMiddleware = (req, res, next) => {
     const { user } = req;
@@ -7,4 +7,26 @@ const issueJwtMiddleware = (req, res, next) => {
     next(); 
 };
 
-module.exports = { issueJwtMiddleware };
+function jwtParserMiddleware(req, resp, next) {
+    const token = req.cookies.jwt;
+    const payload = verifyJwt(token);
+
+    req._auth = payload;
+
+    if (Object.keys(payload).length === 0) {
+        resp.clearCookie('jwt');
+        return resp.redirect('/login');
+    }
+
+    const userId = payload.userId;
+
+    req.userId = userId;
+
+    next();
+}
+
+
+module.exports = {
+    issueJwtMiddleware,
+    jwtParserMiddleware
+};

@@ -5,5 +5,16 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <h1>Starting page</h1>
+
+    <div>
+        
+        <p>Create post</p>
+        <form action="/create-post" method="post">
+            <textarea name="postText" rows="5" cols="33">
+            </textarea>
+            <button type="submit">Post</button>
+        </form>
+
+    </div>
 </body>
 </html>

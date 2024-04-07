@@ -3,6 +3,7 @@ const loginRouter = express.Router();
 const userService = require(`../sevices/user`);
 const { checkPassword, issueJwt } = require('../utils/authorization');
 const { userValidation } = require('../utils/validation');
+const { issueJwtMiddleware } = require('../middleware/auth');
 
 loginRouter.get('/', (req, res) => {
     res.render('LoginPage');
@@ -21,13 +22,6 @@ async function authenticate(req, res, next) {
     }
 
     req.user = user;
-    next();
-}
-
-function issueJwtMiddleware(req, res, next) {
-    const { user } = req;
-    const token = issueJwt({ userId: user.id, role: 'author' });
-    req.token = token;
     next();
 }
 

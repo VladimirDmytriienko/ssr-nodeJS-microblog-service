@@ -30,9 +30,12 @@ function verifyJwt(token) {
 
     try {
         data = jwt.verify(token, secret);
+        if (data && data.exp && Date.now() >= data.exp * 1000) {
+            console.error('Expired JWT!');
+            return {};
+        }
     } catch (err) {
         console.error('Invalid JWT!');
-
     }
 
     return data;
