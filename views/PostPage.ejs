@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+    <body>
+        <%- include('./partials/header.ejs') %>
+
+            <div class="container">
+                <h1>Post Page</h1>
+
+                <div class="article">
+                    <h2>Article</h2>
+                    <p>
+                        Text: <%= article.text %>
+                    </p>
+                </div>
+
+                <div class="comments">
+                    <h2>Comments</h2>
+                    <% comments.forEach(comment=> { %>
+                        <div class="comment">
+                            <p>
+                                Comment: <%= comment.id %>
+                            </p>
+                            <p>
+                                Text: <%= comment.text %>
+                            </p>
+
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+
+    </body>
+
+</html>

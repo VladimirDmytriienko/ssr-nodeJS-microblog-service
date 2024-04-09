@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs')  %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <div class="container">
+        <h1>Starting page</h1>
+        <div>
+            <p>Create post</p>
+            <form action="/create-post" method="post">
+                <textarea name="postText" rows="5" cols="33"></textarea>
+                <button type="submit">Post</button>
+            </form>
+            <main>
+                <% articles.forEach(article=> { %>
+                    <li>
+                        <a href="/post-page/<%= article.id %>"> 
+                            Post from  (<%= article.user_id %>):   <%= article.text %>
+                        </a>
+                        <form action="/create-comment" method="post" class="comment-form">
+                            <input type="hidden" name="articleId" value="<%= article.id %>">
+                            <textarea name="commentText" ></textarea>
+                            <button type="submit">Add Comment</button>
+                        </form>
+                    </li>
+                    <% }); %>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

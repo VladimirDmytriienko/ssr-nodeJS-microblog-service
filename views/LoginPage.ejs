@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+
+    <h1>Login page</h1>
+    <div class="container">
+        <form action="/login/submit" method="post">
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="password">Password:</label>
+            <input type="password" id="pass" name="password" required />
+            <button type="submit">Submit</button>
+        </form>
+
+    </div>
+
+
+</body>
+</html>
