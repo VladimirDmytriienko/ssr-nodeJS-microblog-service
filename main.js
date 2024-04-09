@@ -47,7 +47,6 @@ srv.get('/post-page/:articleId', jwtParserMiddleware, async (req, res) => {
     const { articleId } = req.params; 
     const article = await getArticleById(articleId); 
     const comments = await getCommentsByArticleId(articleId)
-    console.log(comments, article);
     res.render('PostPage', {  comments, article } );
 });
 
