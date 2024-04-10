@@ -6,7 +6,8 @@
   "scripts": {
     "migrate:all": "npx knex migrate:latest",
     "migrate:up": "npx knex migrate:up",
-    "debug:server:express": "nodemon --inspect ./main.js"
+    "debug:server:express": "nodemon --inspect ./main.js",
+    "start:server": "nodemon ./main.js"
   },
   "author": "Volodymyr Dmytriienko",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "knex": "^3.1.0",
     "morgan": "^1.10.0",
     "objection": "^3.1.4",
+    "pg": "^8.11.5",
     "yup": "^1.4.0"
   }
 }
