@@ -22,7 +22,7 @@ signUpRouter.post('/register', userValidation, async (req, res) => {
         const savedUser = { id: id, ...user };
         const token = issueJwt({ userId: id, role: 'author' });
         res.cookie('jwt', token, { httpOnly: true });
-        res.redirect('/'); 
+        res.redirect('/');
 
     } catch (err) {
         res.send(400, err.message)
